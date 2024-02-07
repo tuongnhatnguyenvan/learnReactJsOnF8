@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactJs Props</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        Props
+            React elements
+                - Sử dụng props giống như với attribute của thẻ HTML
+                - 2 props class, for => className, htmlFor
+                - Phải tuân theo quy ước có sẵn
+            React components
+                - Sử dụng props giống như đổi số cho Component
+                - Tự do đặt tên props
+                    - Đất theo camelCase
+                    - Có thể bao gồm dâu gạch ngang
+            Chu y:
+                - Prop "key" là prop đặc biệt 
+                - Props cơ bản là đổi số của Component
+                    ==>Props có thể là bất cứ kiểu dữ liệu gì
+                - Sử dụng destructuring
+     -->
+
+
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Homework () 
+        function Homework(props) {
+            return (
+                <div className='post-item'>
+                    <img
+                        src={props.image}
+                        alt='error'
+                    />
+                    <h2 className='post-title'>{props.title}</h2>
+                    <p className='post-desc'>{props.desc}</p>
+                    <p className='post-published'>{props.published}</p>
+                </div>
+            )
+        }
+
+        // App.js
+        function App() {
+            return (
+                <div className='wrapper'>
+                    <Homework
+                        title='Toi hoc ReactJs'
+                        image='https://picsum.photos/200'
+                        desc='Tuong Nhat la mot chan trai ham hoc hoi de giai cuu the gioi'
+                        published='Mot ngay truoc'
+                    />
+
+                </div>
+            )
+        }
+
+        const rootElement = ReactDOM.createRoot(document.getElementById('root'));
+        rootElement.render(<App />);
+
+    </script>
+</body>
+
+</html>
