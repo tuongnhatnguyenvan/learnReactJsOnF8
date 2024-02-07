@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactJs Element Type</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        1. React element types: string, function/ class
+            - Wrapper
+             - Header -> Header component
+             - Content -> Content component
+             - Footer -> Footer component
+     -->
+    <div id="app"></div>
+    <div id="root"></div>
+    <script type="text/babel">
+        function Header() {
+            return(
+                <div className = 'Header'>Header</div>
+            )
+        }
+        const app = (
+            <div className = 'Wrapper'>
+                <Header />
+            </div>
+        )
+        const appElement = ReactDOM.createRoot(document.getElementById('app'));
+        appElement.render(app);
+
+
+
+        // Homework () 
+        function Homework(){
+            return (
+                <div className = 'post-item'>
+                    <img 
+                        src = 'https://picsum.photos/200' 
+                        alt = 'error' 
+                    />
+                    <h2 className = 'post-title'>Toi hoc ReactJs</h2>
+                    <p className = 'post-desc'>Tuong Nhat la mot chan trai ham hoc hoi de giai cuu the gioi</p>
+                    <p className = 'post-published'>Mot ngay truoc</p>
+                </div> 
+            )
+        }
+        // const root =(
+        //     <div className = 'wrapper'>
+        //         <Homework />
+        //     </div>
+        // )
+
+        // App.js
+        function App(){
+            return(
+                <div className = 'wrapper'>
+                    <Homework />
+                </div>
+            )
+        }
+
+        const rootElement = ReactDOM.createRoot(document.getElementById('root'));
+        rootElement.render(<App />);
+
+    </script>
+</body>
+
+</html>
