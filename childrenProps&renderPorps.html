@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactJs Props</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        Làm việc với JSX
+        
+        // Phần I.
+        - Xử lý DOM events
+        - Component do chúng ta định nghĩa phải viết in hoa kí tự đầu
+            - Chọn component trong 1 object 
+        - Booleans, Null & Undefined không được render
+        - Kết hợp toán tử logic để render theo điều kiện
+
+        // Phần II.
+        Props trong JSX
+            - <YourComponent
+              propName1="String literals"
+              propName2={expression}
+            />
+            - Props default to "true"
+            - Spread/Rest props
+            - Children prop
+                - <YourComponent>String literals</YourComponent>
+                - <YourComponent>{expression}</YourComponent>
+            - Render props 
+    -->
+    <div id="root"></div>
+    <div id="root1"></div>
+    <div id="root2"></div>
+
+    <script type="text/babel">
+        function Button({ title }) {
+            return <button>{title}</button>
+        }
+        function App() {
+            let title = "Click me";
+            return (
+                <Button title={title} />
+                // <Button title="Click me" />
+            )
+        }
+
+        const rootElement = document.getElementById("root");
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<App />);
+
+        function Input({ label, ...inputProps }) {
+            return (
+                <div id="wrapper">
+                    <label>{label}</label>
+                    <input {...inputProps} />
+                </div>
+            )
+        }
+
+        function App1() {
+            return (
+                <Input
+                    label="full name"
+                    type="text"
+                    placeholder="Enter your name..."
+                    title="Day la input"
+                    onFocus={() => { console.log(Math.random) }}
+                />
+            )
+        }
+
+        const rootElement1 = document.getElementById("root1");
+        const root1 = ReactDOM.createRoot(rootElement1);
+        root1.render(<App1 />);
+
+
+        function List({ data }) {
+            return (
+                <ul>
+                    {data.map((item, index) =>
+                        <li key={index} >{item}</li>
+                    )}
+                </ul>
+            )
+        }
+
+        function App2() {
+            const dataCars = ['BMW', 'Honda', 'Mazda'];
+            return (
+                <List
+                    data={dataCars}
+                />
+            )
+        }
+
+        const rootElement2 = document.getElementById("root2");
+        const root2 = ReactDOM.createRoot(rootElement2);
+        root2.render(<App2 />);
+    </script>
+</body>
+
+</html>
