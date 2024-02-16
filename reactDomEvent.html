@@ -17,7 +17,7 @@
         // Phần I.
         - Xử lý DOM events
         - Component do chúng ta định nghĩa phải viết in hoa kí tự đầu
-        - Chọn component trong 1 object 
+            - Chọn component trong 1 object 
         - Booleans, Null & Undefined không được render
         - Kết hợp toán tử logic để render theo điều kiện
 
@@ -35,6 +35,9 @@
             - Render props 
     -->
     <div id="root"></div>
+    <div id="root2"></div>
+    <div id="root3"></div>
+    <div id="root4"></div>
 
     <script type="text/babel">
         function App() {
@@ -49,6 +52,83 @@
 
         const root = ReactDOM.createRoot(rootElement);
         root.render(<App />);
+
+
+        // Phần II.
+        const Form = {
+            Input() {
+                return <input type="text" />
+            },
+            Checkbox() {
+                return <input type="checkbox" />
+            }
+        }
+
+        function App2() {
+            const type = 'Input';
+            const Component = Form[type];
+
+            return (
+                <div id='wrapper'>
+                    <Component />
+                </div>
+
+                // <div id='wrapper'>
+                //     <Form.Checkbox />    
+                // </div>
+            )
+        }
+
+        const rootElement2 = ReactDOM.createRoot(document.getElementById('root2'));
+        rootElement2.render(<App2 />);
+
+
+        // Phần III.
+        function Button({ title, href, onClick }) {
+            let Component = '';
+            const props = {};
+            if(href){
+                Component = 'a';
+                props.href = href;
+            }
+            if(onClick){
+                props.onClick = onClick;
+            }
+            
+            return (
+                <Component {...props}>{title}</Component>
+            )
+        }
+
+        function App3() {
+            return (
+                <div id='wrapper'>
+                    <Button
+                        title = 'Button Yeu Thuong'
+                        href = 'https://www.facebook.com/'
+                        onClick = {() => console.log(Math.random())}
+                    />
+                </div>
+            )
+        }
+
+        const rootElement3 = ReactDOM.createRoot(document.getElementById('root3'));
+        rootElement3.render(<App3 />);
+
+
+        // Phần IV.
+        function App4() {
+            let firstAccess = true;
+
+            return (
+                <div id='wrapper'>
+                    {firstAccess && <h1>Tuong Nhat hoc Reat18 </h1>}
+                </div>
+            )
+        }
+
+        const rootElement4 = ReactDOM.createRoot(document.getElementById('root4'));
+        rootElement4.render(<App4 />);
     </script>
 </body>
 
